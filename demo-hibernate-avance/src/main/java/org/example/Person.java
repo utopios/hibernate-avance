@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 
@@ -21,5 +24,7 @@ public class Person {
     private String name;
 
     @OneToOne(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    @BatchSize(size = 10)
     private Address address;
 }
