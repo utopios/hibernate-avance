@@ -55,18 +55,33 @@ public class Main {
 
         session.close();*/
 
+        //Cache second niveau
+
         Session session1 = HibernateService.getInstance().getSessionFactory().openSession();
-        session1.beginTransaction();
+       /* session1.beginTransaction();
         Person person = session1.get(Person.class, 1L);
         person.setName("ihab abadi");
         session1.getTransaction().commit();
-        session1.close();
+        session1.close();*/
 
         Session session2 = HibernateService.getInstance().getSessionFactory().openSession();
-        session2.beginTransaction();
+        /*session2.beginTransaction();
         person = session2.get(Person.class, 1L);
         System.out.println(person.getName());
         session2.getTransaction().commit();
+        session2.close();*/
+
+        //Cache second niveau requete
+        session1.beginTransaction();
+        List<Person> personList = session1.createQuery("from Person p where p.id=:id").setParameter("id", 1L).setCacheable(true).list();
+        System.out.println(personList);
+        session1.getTransaction().commit();
+        session1.close();
+
+        session2.beginTransaction();
+        List<Person> personList1 = session2.createQuery("from Person p where p.id=:id").setParameter("id", 1L).list();
+        session2.getTransaction().commit();
+        System.out.println(personList1);
         session2.close();
     }
 
