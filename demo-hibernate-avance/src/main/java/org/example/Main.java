@@ -74,6 +74,7 @@ public class Main {
         //Cache second niveau requete
         session1.beginTransaction();
         List<Person> personList = session1.createQuery("from Person p where p.id=:id").setParameter("id", 1L).setCacheable(true).list();
+        //List<Person> personList = session1.createQuery("from Person p where p.id=:id").setParameter("id", 1L).setHint("org.hibernate.cacheable", true).list();
         System.out.println(personList);
         session1.getTransaction().commit();
         session1.close();

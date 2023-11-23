@@ -26,7 +26,8 @@
         <property name="show_sql">true</property>
 
         <!-- Mappage des entités -->
-        <mapping class="org.example.Person"/>
+        <!--<mapping class="org.example.Person"/>-->
+        <mapping resource="Person.hbm.xml"></mapping>
         <mapping class="org.example.Address"/>
         <mapping class="org.example.Utilisateur"/>
         <mapping class="org.example.Emprunt"/>
