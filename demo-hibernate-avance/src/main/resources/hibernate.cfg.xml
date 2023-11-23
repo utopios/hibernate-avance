@@ -34,5 +34,9 @@
         <mapping class="org.example.Livre"/>
         <mapping class="org.example.Auteur"/>
 
+        <mapping class="org.example.exercicehotel.Hotel"></mapping>
+        <mapping class="org.example.exercicehotel.Reservation"></mapping>
+        <mapping class="org.example.exercicehotel.Room"></mapping>
+
     </session-factory>
 </hibernate-configuration>
