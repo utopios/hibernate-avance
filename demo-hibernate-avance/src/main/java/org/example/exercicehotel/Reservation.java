@@ -1,10 +1,14 @@
 package org.example.exercicehotel;
 
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

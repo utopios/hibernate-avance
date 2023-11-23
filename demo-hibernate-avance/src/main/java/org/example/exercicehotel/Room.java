@@ -1,11 +1,14 @@
 package org.example.exercicehotel;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+
+@Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
