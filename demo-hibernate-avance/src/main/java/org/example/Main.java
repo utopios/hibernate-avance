@@ -8,9 +8,9 @@ public class Main {
     public static void main(String[] args) {
 
         //Insert fake data
-       /* for(int i=1; i < 50; i++) {
+        for(int i=1; i < 50; i++) {
             insertData(HibernateService.getInstance().getSessionFactory().openSession(), "toto"+String.valueOf(i), "address Toto "+ String.valueOf(i));
-        }*/
+        }
 
         Session session = HibernateService.getInstance().getSessionFactory().openSession();
 

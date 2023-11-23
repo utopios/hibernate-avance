@@ -29,6 +29,12 @@
             <version>8.0.27</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.23</version> <!-- Utilisez la dernière version stable du pilote JDBC PostgreSQL -->
+        </dependency>
+
         <!-- Implémentation JPA (facultatif mais recommandé) -->
         <dependency>
             <groupId>org.hibernate</groupId>
