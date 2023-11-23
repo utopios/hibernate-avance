@@ -20,5 +20,10 @@
         <!-- Mappage des entités -->
         <mapping class="org.example.Person"/>
         <mapping class="org.example.Address"/>
+        <mapping class="org.example.Utilisateur"/>
+        <mapping class="org.example.Emprunt"/>
+        <mapping class="org.example.Livre"/>
+        <mapping class="org.example.Auteur"/>
+
     </session-factory>
 </hibernate-configuration>

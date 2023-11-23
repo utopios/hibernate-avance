@@ -3,7 +3,11 @@ package org.example;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -33,6 +37,10 @@ public class Main {
         session.close();
       /*  System.out.println(person.getName());
         System.out.println(person.getAddress());*/
+
+        //Inserer utilisateur
+        insertDataLibrairy(HibernateService.getInstance().getSessionFactory().openSession(), "u1");
+
     }
 
 
@@ -60,5 +68,50 @@ public class Main {
             // Fermer la session
             session.close();
         }
+    }
+
+    private static void insertDataLibrairyUtilisateur(Session session, String utilisateur) {
+        try {
+            session.beginTransaction();
+
+
+            Utilisateur u = Utilisateur.builder().nom(utilisateur).build();
+            session.persist(u);
+            // Valider la transaction
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            // En cas d'erreur, annuler la transaction
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            // Fermer la session
+            session.close();
+        }
+    }
+
+
+        private static void insertDataLivre(Session session, String titre, String auteur) {
+            try {
+                session.beginTransaction();
+
+                Livre livre = Livre.builder().titre(titre).anneePublication(2000).build();
+                Set<Auteur> auteurSet = new HashSet<>();
+                Auteur auteurEnregistre = Auteur.builder().nom(auteur).build();
+                session.persist(auteurEnregistre);
+                auteurSet.add(auteurEnregistre);
+                session.persist(livre);
+                session.getTransaction().commit();
+            } catch (Exception e) {
+                // En cas d'erreur, annuler la transaction
+                if (session.getTransaction() != null) {
+                    session.getTransaction().rollback();
+                }
+                e.printStackTrace();
+            } finally {
+                // Fermer la session
+                session.close();
+            }
     }
 }
