@@ -21,6 +21,7 @@ import javax.persistence.*;
 //@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 //@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@NamedQuery(name="Person.findById", query = "From Person p WHERE p.id=:id")
 public class Person {
 
     @Id

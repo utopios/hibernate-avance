@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import javax.management.Query;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -77,13 +78,15 @@ public class Main {
         //List<Person> personList = session1.createQuery("from Person p where p.id=:id").setParameter("id", 1L).setHint("org.hibernate.cacheable", true).list();
         System.out.println(personList);
         session1.getTransaction().commit();
-        session1.close();
+        //session1.close();
 
         session2.beginTransaction();
         List<Person> personList1 = session2.createQuery("from Person p where p.id=:id").setParameter("id", 1L).list();
         session2.getTransaction().commit();
         System.out.println(personList1);
         session2.close();
+
+        Person person= session1.createNamedQuery("Person.findById", Person.class).setParameter("id", 1L).getSingleResult();
     }
 
 
