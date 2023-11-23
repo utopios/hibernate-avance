@@ -29,18 +29,31 @@ public class Main {
         //System.out.println(person.getAddress());
 
         //Demo N+1
-        List<Person> personList = session.createQuery("from Person", Person.class).list();
+        /*List<Person> personList = session.createQuery("from Person", Person.class).list();
 
         for(Person p : personList) {
             System.out.println(p.getAddress());
         }
         session.close();
-      /*  System.out.println(person.getName());
-        System.out.println(person.getAddress());*/
+      *//*  System.out.println(person.getName());
+        System.out.println(person.getAddress());*//*
 
         //Inserer utilisateur
-        insertDataLibrairy(HibernateService.getInstance().getSessionFactory().openSession(), "u1");
+        insertDataLibrairyUtilisateur(HibernateService.getInstance().getSessionFactory().openSession(), "u1");
 
+        for(int i=1; i < 50; i++) {
+            insertDataLivre(HibernateService.getInstance().getSessionFactory().openSession(), "toto"+String.valueOf(i), "Toto "+ String.valueOf(i));
+        }*/
+
+        //Démo cache Session
+        Person person = session.get(Person.class, 1L);
+        System.out.println(person);
+        session.evict(person);
+        person = session.get(Person.class, 1L);
+        session.refresh(person);
+        System.out.println(person);
+
+        session.close();
     }
 
 
@@ -98,7 +111,8 @@ public class Main {
 
                 Livre livre = Livre.builder().titre(titre).anneePublication(2000).build();
                 Set<Auteur> auteurSet = new HashSet<>();
-                Auteur auteurEnregistre = Auteur.builder().nom(auteur).build();
+                Auteur auteurEnregistre = Auteur.builder().nom(auteur).livres(new HashSet<>()).build();
+                auteurEnregistre.addLivre(livre);
                 session.persist(auteurEnregistre);
                 auteurSet.add(auteurEnregistre);
                 session.persist(livre);

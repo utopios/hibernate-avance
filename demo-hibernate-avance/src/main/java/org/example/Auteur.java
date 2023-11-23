@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,5 +23,9 @@ public class Auteur {
     private String nom;
 
     @ManyToMany(mappedBy = "auteurs", fetch = FetchType.LAZY)
-    private Set<Livre> livres;
+    private Set<Livre> livres = new HashSet<>();
+
+    public void addLivre(Livre livre) {
+        livres.add(livre);
+    }
 }
