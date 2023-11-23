@@ -16,7 +16,7 @@ public class Main {
             insertData(HibernateService.getInstance().getSessionFactory().openSession(), "toto"+String.valueOf(i), "address Toto "+ String.valueOf(i));
         }*/
 
-        Session session = HibernateService.getInstance().getSessionFactory().openSession();
+        //Session session = HibernateService.getInstance().getSessionFactory().openSession();
 
 
 
@@ -46,14 +46,28 @@ public class Main {
         }*/
 
         //Démo cache Session
-        Person person = session.get(Person.class, 1L);
+        /*Person person = session.get(Person.class, 1L);
         System.out.println(person);
         session.evict(person);
         person = session.get(Person.class, 1L);
         session.refresh(person);
         System.out.println(person);
 
-        session.close();
+        session.close();*/
+
+        Session session1 = HibernateService.getInstance().getSessionFactory().openSession();
+        session1.beginTransaction();
+        Person person = session1.get(Person.class, 1L);
+        person.setName("ihab abadi");
+        session1.getTransaction().commit();
+        session1.close();
+
+        Session session2 = HibernateService.getInstance().getSessionFactory().openSession();
+        session2.beginTransaction();
+        person = session2.get(Person.class, 1L);
+        System.out.println(person.getName());
+        session2.getTransaction().commit();
+        session2.close();
     }
 
 

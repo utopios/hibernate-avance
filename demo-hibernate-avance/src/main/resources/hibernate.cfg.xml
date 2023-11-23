@@ -10,6 +10,13 @@
         <property name="hibernate.connection.password">postgres</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
+        <!-- Activer le cache de second niveau -->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <!-- Spécifier le fournisseur de cache, par exemple EHCache -->
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+
+        <!-- Spécifier le chemin vers le fichier de configuration de cache -->
+        <property name="net.sf.ehcache.configurationResourceName">ehcache.xml</property>
 
         <!-- Dialecte SQL -->
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>

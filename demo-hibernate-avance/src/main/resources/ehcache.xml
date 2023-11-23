@@ -1,0 +1,21 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="ehcache.xsd"
+         updateCheck="false"
+         monitoring="autodetect"
+         dynamicConfig="true">
+
+    <!-- Paramètres par défaut pour tous les caches -->
+    <defaultCache
+            maxEntriesLocalHeap="10000"
+            eternal="false"
+            timeToLiveSeconds="120"
+            timeToIdleSeconds="120"
+            memoryStoreEvictionPolicy="LRU"
+            statistics="true">
+    </defaultCache>
+
+    <!--<cache name="com.example.Person">
+
+    </cache>-->
+
+</ehcache>

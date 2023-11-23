@@ -35,6 +35,12 @@
             <version>42.2.23</version> <!-- Utilisez la dernière version stable du pilote JDBC PostgreSQL -->
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>5.6.1.Final</version>
+        </dependency>
+
         <!-- Implémentation JPA (facultatif mais recommandé) -->
         <dependency>
             <groupId>org.hibernate</groupId>
