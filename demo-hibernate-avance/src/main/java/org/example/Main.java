@@ -16,8 +16,8 @@ public class Main {
 
 
 
-        Person person = session.get(Person.class, 1L);
-        System.out.println(person.getName());
+       /* Person person = session.get(Person.class, 1L);
+        System.out.println(person.getName());*/
 
 
 
@@ -25,14 +25,14 @@ public class Main {
         //System.out.println(person.getAddress());
 
         //Demo N+1
-        /*List<Person> personList = session.createQuery("from Person", Person.class).list();
+        List<Person> personList = session.createQuery("from Person", Person.class).list();
 
         for(Person p : personList) {
             System.out.println(p.getAddress());
-        }*/
+        }
         session.close();
-        System.out.println(person.getName());
-        System.out.println(person.getAddress());
+      /*  System.out.println(person.getName());
+        System.out.println(person.getAddress());*/
     }
 
 
