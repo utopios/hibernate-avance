@@ -12,7 +12,7 @@ public class Commande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @OneToMany(mappedBy = "commande", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL ,fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<Article> articles;
 
 

@@ -15,5 +15,10 @@ public class Main {
 
         //Cohérence des données en mémoire
         commande.getArticles().add(article);
+
+        //
+        commande.getArticles().remove(article);
+        sessionA.update(commande);
+        sessionA.delete(article);
     }
 }
