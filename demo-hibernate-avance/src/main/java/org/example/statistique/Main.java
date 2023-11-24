@@ -4,6 +4,7 @@ import org.example.*;
 import org.example.exercicehotel.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.StatelessSession;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +17,7 @@ public class Main {
 
         //Performances de sessions
         Long openSession = sessionFactory.getStatistics().getSessionOpenCount();
+        StatelessSession sessionWithOutFirstCache = sessionFactory.openStatelessSession();
         System.out.println(openSession);
         // Sessions fermées, la durée de vie moyenne des sessions
 
