@@ -1,9 +1,11 @@
 package org.example.exercicehotel.dao;
 
 import org.example.exercicehotel.Room;
+import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import javax.persistence.LockModeType;
 import java.math.BigDecimal;
 import java.util.List;
 public class RoomDAO extends BaseDAO<Room, Long> {
@@ -22,6 +24,7 @@ public class RoomDAO extends BaseDAO<Room, Long> {
     public List<Room> findByCriteria(BigDecimal minPrice, BigDecimal maxPrice, Session session) {
         String hql = "FROM Room r WHERE r.price >= :minPrice AND r.price <= :maxPrice";
         Query<Room> query = session.createQuery(hql, Room.class);
+        query.setLockMode(LockModeType.PESSIMISTIC_READ);
         query.setParameter("minPrice", minPrice);
         query.setParameter("maxPrice", maxPrice);
         query.setCacheable(true); // Activez le cache de requête

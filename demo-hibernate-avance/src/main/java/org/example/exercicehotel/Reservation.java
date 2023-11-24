@@ -27,6 +27,9 @@ public class Reservation {
 
     private String customerName;
 
+    @Version
+    private Long version;
+
     public Reservation() {
     }
 

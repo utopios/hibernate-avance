@@ -7,11 +7,13 @@ import org.example.exercicehotel.dao.BaseDAO;
 import org.example.exercicehotel.dao.HotelDAO;
 import org.example.exercicehotel.dao.ReservationDAO;
 import org.example.exercicehotel.dao.RoomDAO;
+import org.hibernate.PessimisticLockException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import javax.persistence.Cacheable;
+import javax.persistence.OptimisticLockException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Random;
@@ -95,6 +97,25 @@ public class BusinessService {
         room.setNumber("Room " + (random.nextInt(100) + 1)); // Numéro de chambre aléatoire
         room.setPrice(BigDecimal.valueOf(random.nextDouble() * 100 + 50)); // Prix aléatoire entre 50 et 150
         return room;
+    }
+
+
+    //Création de réservation
+
+    private void createReservation(Hotel hotel, Reservation reservation) {
+
+        try(Session session = sessionFactory.openSession()) {
+            Transaction tx = session.beginTransaction();
+            ((ReservationDAO)reservationDAO).makeReservation(reservation, session);
+            tx.commit();
+
+        }catch (OptimisticLockException ex) {
+            //Gestion de l'exception de verouillage optimiste
+        }
+        catch (PessimisticLockException ex) {
+            //Gestion de l'exception de verouillage pessimiste
+        }
+
     }
 
 
