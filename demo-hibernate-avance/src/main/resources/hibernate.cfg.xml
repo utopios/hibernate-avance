@@ -37,6 +37,6 @@
         <mapping class="org.example.exercicehotel.Hotel"></mapping>
         <mapping class="org.example.exercicehotel.Reservation"></mapping>
         <mapping class="org.example.exercicehotel.Room"></mapping>
-
+        <mapping class="org.example.concurrence.Book"></mapping>
     </session-factory>
 </hibernate-configuration>
