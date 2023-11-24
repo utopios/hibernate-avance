@@ -1,5 +1,8 @@
 package org.example.association.exercice;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +17,7 @@ public class Article {
     private Auteur auteur;
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Commentaire> commentaires = new ArrayList<>();
 
     public void addCommentaire(Commentaire commentaire) {

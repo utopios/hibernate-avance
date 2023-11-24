@@ -16,6 +16,8 @@
         <!-- Spécifier le fournisseur de cache, par exemple EHCache -->
         <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
 
+        <property name="hibernate.generate_statistics">true</property>
+
         <!-- Spécifier le chemin vers le fichier de configuration de cache -->
         <property name="net.sf.ehcache.configurationResourceName">ehcache.xml</property>
 

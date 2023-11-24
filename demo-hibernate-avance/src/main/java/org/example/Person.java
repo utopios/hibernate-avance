@@ -34,4 +34,19 @@ public class Person {
     @Fetch(FetchMode.JOIN)
     @BatchSize(size = 10)
     private Address address;
+
+    @PrePersist
+    public void prePersist() {
+
+    }
+
+    @PostPersist
+    public void postPersist() {
+
+    }
+
+    @PostLoad
+    public void postLoad() {
+
+    }
 }
